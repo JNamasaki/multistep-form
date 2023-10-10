@@ -27,5 +27,5 @@ router.post("/sheet/update", async(req,res)=>{
     res.status(200).json({msg: row.data});
 })
 
-router.post("/teste", (req,res)=> res.status(200).json({msg:"conexao estabelecida"}))
+router.get("/teste", (req,res)=> res.status(200).json({msg:"conexao estabelecida"}))
 module.exports = router
