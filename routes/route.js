@@ -24,7 +24,7 @@ router.post("/sheet/update", async(req,res)=>{
         range:"Página1",
         valueInputOption:"USER_ENTERED",
         resource:{
-            values:[dia,nome,cpf,telefone,email]
+            values:[[dia,nome,cpf,telefone,email]]
         }
     })
 
