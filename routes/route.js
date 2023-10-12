@@ -11,8 +11,12 @@ router.post('/product/sendMailer', sendMailer );
 router.post("/sheet/update", async(req,res)=>{
     const { googleSheets,auth,spreadsheetId} = await getAuthSheets();
 
-    const { values } = req.body;
+    const { dia, nome, cpf, telefone,email } = req.body;
 
+    if(nome == null) return res.status(400).json({ msg:"Informe o nome"})
+    if(cpf == null) return res.status(400).json({ msg:"Informe o cpf"})
+    if(telefone == null) return res.status(400).json({ msg:"Informe o telefone"})
+    if(email == null) return res.status(400).json({ msg:"Informe o email"})
 
     const row = await googleSheets.spreadsheets.values.append({
         auth,
@@ -20,7 +24,7 @@ router.post("/sheet/update", async(req,res)=>{
         range:"Página1",
         valueInputOption:"USER_ENTERED",
         resource:{
-            values:values
+            values:[dia,nome,cpf,telefone,email]
         }
     })
 

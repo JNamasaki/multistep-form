@@ -28,7 +28,7 @@ function montaEmail(resultado, nome) {
         finalTemplate += `
       
 <div class="card-body" style="margin:0 auto;display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 500px;text-align: justify; align-self: center;color:white;">
-        <div class="card-text" > 
+        <div class="card-text" style="color:white"> 
         <h3 style="text-align: center;"> ${item.valor.toFixed(1)}%: ${perfil.perfil} </h3>
           <p>${perfil.descricao}</p>
           <h3>Profissões:</h3>
