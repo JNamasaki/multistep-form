@@ -30,7 +30,19 @@ router.post("/sheet/update", async (req, res) => {
     resultado.forEach((ponto) => {
         pontuacao[ponto.categoria] = ponto.valor.toFixed(2)
     });
-    const resultadoString = JSON.stringify(pontuacao);
+    // const resultadoString = JSON.stringify(pontuacao);
+
+    const perfilResultado = [];
+
+    // Transforma as propriedades em um array de objetos com chave e valor
+    for (let categoria in pontuacao) {
+        perfilResultado.push({ categoria, valor: pontuacao[categoria] });
+    }
+  
+    // Ordena o array em ordem decrescente com base no valor
+    perfilResultado.sort((a, b) => b.valor - a.valor);
+  
+    // console.log(perfilResultado[0].valor, perfilResultado["I"],perfilResultado["A"],perfilResultado["S"],perfilResultado["E"],perfilResultado["C"])
 
     try {
         const row = await googleSheets.spreadsheets.values.append({
@@ -39,13 +51,13 @@ router.post("/sheet/update", async (req, res) => {
             range: "Página1",
             valueInputOption: "USER_ENTERED",
             resource: {
-                values: [[dia, nome, cpf, telefone, email, resultadoString]]
+                values: [[dia, nome, cpf, telefone, email, perfilResultado[0].valor, perfilResultado[1].valor,perfilResultado[2].valor,perfilResultado[3].valor,perfilResultado[4].valor,perfilResultado[5].valor]]
             }
         });
         
         res.status(200).json({ msg: row.data });
     } catch (error) {
-
+        console.error(error)
         res.status(500).json({ msg: "erro ao salvar"})
     }
 

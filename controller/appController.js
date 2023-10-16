@@ -68,6 +68,24 @@ const sendMailer = (req, res) => {
             refreshToken: process.env.MAIL_OAUTH_REFRESH_TOKEN,
             accessToken: process.env.MAIL_OAUTH_ACESS_TOKEN,
         },
+        
+        //  Configuração pro smpt da hostinger
+
+
+        //         host: "smpt.hostinger.com",
+        // secure: true, 
+        // secureConnection: false,
+        // tls: {
+        //    ciphers: "SSLv3",
+        // },
+        // requireTLS: true,
+        // port: 465,
+        // debug: true,
+        // connectionTimeout: 10000,
+        // auth: {
+        //     user: process.env.GRIEVANCE_EMAIL,
+        //     pass: process.env.GRIEVANCE_EMAIL_PASSWORD,
+        // },
     });
 
     transporter.set("oauth2_provision_cb", (user, renew, callback) => {
